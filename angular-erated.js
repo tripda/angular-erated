@@ -31,15 +31,19 @@ function eratedServiceProvider() {
             }
 
             if (!options.align) {
-                options.align = "horizontal"
+                options.align = "horizontal";
             }
 
             if (!options.view) {
-                options.view = "buyer"
+                options.view = "buyer";
             }
 
             if (!options.emailhash) {
-                options.emailhash = "9999999"
+                options.emailhash = "9999999";
+            }
+
+            if (!options.username) {
+                options.username = "username";
             }
 
             reviews = [];
@@ -59,7 +63,7 @@ function eratedServiceProvider() {
                     width: 380
                 },
                 userData: {
-                    name: "Arnav34",
+                    name: options.username,
                     sha1Email: options.emailhash,
                     location: "",
                     image: "http://sidelineswap.com/system/images/138377/thumb/602865_346126212166380_1961619082_n.jpg",
@@ -97,6 +101,10 @@ function eratedPlugin(eratedService) {
 
             if(attr.emailhash) {
                 options.emailhash = attr.emailhash;
+            }
+
+            if(attr.username) {
+                options.username = attr.username;
             }
 
             eratedService.loadSetupScript();

@@ -22,6 +22,10 @@ function eratedPlugin(eratedService) {
                 options.emailhash = attr.emailhash;
             }
 
+            if(attr.username) {
+                options.username = attr.username;
+            }
+
             eratedService.loadSetupScript();
             eratedService.setupVars(options);
         },
