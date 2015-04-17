@@ -29,5 +29,11 @@ angular
 Now you can display it on your page by using a directive
 
 ```javascript
-<eratedplugin align="vertical" view="buyer" emailhash="EMAILHASH"></eratedplugin>
+<eratedplugin 
+    align="vertical" 
+    view="buyer" 
+    emailhash="EMAILHASH"
+    username="MyUser"
+    image="path-to-my-image.png"
+/>
 ```
