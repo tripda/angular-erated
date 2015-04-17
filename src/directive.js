@@ -3,7 +3,7 @@ angular
     .directive('eratedplugin', ['eratedService', eratedPlugin]);
 
 function eratedPlugin(eratedService) {
-    var templateContent = '<div class="erated horizontal"></div>';
+    var templateContent = '<div class="erated"></div>';
 
     return {
         restrict: 'EA',
