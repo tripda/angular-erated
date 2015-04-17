@@ -52,11 +52,10 @@ function eratedServiceProvider() {
                 config: {
                     align: options.align,
                     key: apiKey,
-                    color: "#45b66d",
-                    purchaseId: "make_an_offer",
+                    color: options.color,
                     reputationMode: "marketplace",
                     privacy: {
-                    firstNameOnly: false
+                        firstNameOnly: false
                     },
                     view: options.view,
                     type: "html",
@@ -66,7 +65,7 @@ function eratedServiceProvider() {
                     name: options.username,
                     sha1Email: options.emailhash,
                     location: "",
-                    image: "http://sidelineswap.com/system/images/138377/thumb/602865_346126212166380_1961619082_n.jpg",
+                    image: options.image,
                     reputationData: {
                         numberOfReviews: 0,
                         percentPositiveReviews: 0,
@@ -84,28 +83,12 @@ angular
     .directive('eratedplugin', ['eratedService', eratedPlugin]);
 
 function eratedPlugin(eratedService) {
-    var templateContent = '<div class="erated horizontal"></div>';
+    var templateContent = '<div class="erated"></div>';
 
     return {
         restrict: 'EA',
         link: function($scope, $element, attr) {
-            var options = {};
-
-            if(attr.align) {
-                options.align = attr.align;
-            }
-
-            if(attr.view) {
-                options.view = attr.view;
-            }
-
-            if(attr.emailhash) {
-                options.emailhash = attr.emailhash;
-            }
-
-            if(attr.username) {
-                options.username = attr.username;
-            }
+            var options = attr;
 
             eratedService.loadSetupScript();
             eratedService.setupVars(options);
