@@ -49,7 +49,7 @@ function eratedServiceProvider() {
                 config: {
                     align: options.align,
                     key: apiKey,
-                    color: "#45b66d",
+                    color: options.color,
                     purchaseId: "make_an_offer",
                     reputationMode: "marketplace",
                     privacy: {
