@@ -53,7 +53,7 @@ function eratedServiceProvider() {
                     purchaseId: "make_an_offer",
                     reputationMode: "marketplace",
                     privacy: {
-                    firstNameOnly: false
+                        firstNameOnly: false
                     },
                     view: options.view,
                     type: "html",
@@ -63,7 +63,7 @@ function eratedServiceProvider() {
                     name: options.username,
                     sha1Email: options.emailhash,
                     location: "",
-                    image: "http://sidelineswap.com/system/images/138377/thumb/602865_346126212166380_1961619082_n.jpg",
+                    image: options.image,
                     reputationData: {
                         numberOfReviews: 0,
                         percentPositiveReviews: 0,

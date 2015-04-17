@@ -26,6 +26,10 @@ function eratedPlugin(eratedService) {
                 options.username = attr.username;
             }
 
+            if(attr.image) {
+                options.image = attr.image;
+            }
+
             eratedService.loadSetupScript();
             eratedService.setupVars(options);
         },
