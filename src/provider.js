@@ -50,7 +50,6 @@ function eratedServiceProvider() {
                     align: options.align,
                     key: apiKey,
                     color: options.color,
-                    purchaseId: "make_an_offer",
                     reputationMode: "marketplace",
                     privacy: {
                         firstNameOnly: false
