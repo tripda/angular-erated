@@ -61,7 +61,7 @@ function eratedServiceProvider() {
                 userData: {
                     name: options.username,
                     sha1Email: options.emailhash,
-                    location: "",
+                    location: options.location,
                     image: options.image,
                     reputationData: {
                         numberOfReviews: 0,

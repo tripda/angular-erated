@@ -36,5 +36,6 @@ Now you can display it on your page by using a directive
     username="MyUser"
     image="path-to-my-image.png"
     color="#0C5CA1"
+    location="Sao Paulo, Brazil"
 />
 ```
