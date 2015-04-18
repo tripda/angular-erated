@@ -9,14 +9,29 @@ function eratedServiceProvider() {
         apiKey = key;
     }
 
-    this.$get = ['angularLoad', function(angularLoad) {
+    this.$get = ['$q', '$http', 'angularLoad', function($q, $http, angularLoad) {
         var service = {
             apiKey: apiKey,
+            isEmailRegistered: isEmailRegistered,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
 
         return service;
+
+        function isEmailRegistered(emailHash) {
+            var deferred = $q.defer();
+
+            $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+apiKey+'&mode=marketplaces')
+                .success(function(data, status, headers, config) {
+                    deferred.resolve(true);
+                })
+                .error(function(data, status, headers, config) {
+                    deferred.resolve(false);
+                });
+
+            return deferred.promise;
+        }
 
         function loadSetupScript() {
             angularLoad.loadScript('//cdn.erated.co/iframe/erated_imp.js');

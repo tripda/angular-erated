@@ -39,3 +39,18 @@ Now you can display it on your page by using a directive
     location="Sao Paulo, Brazil"
 />
 ```
+
+###Find out whether an email has an Erated Account
+
+You might want to know if someone has signed up on Erated with a given email address, you can get this information by using this method:
+
+```javascript
+eratedService.isEmailRegistered('EMAIL-HASH')
+    .then(function(result) {
+        if (result) {
+            // There is an user with this email!
+        } else {
+            // There is no user with this email...
+        }
+    });
+```
