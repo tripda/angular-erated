@@ -1,5 +1,5 @@
 describe('Service', function() {
-    var eratedService, $httpBackend;
+    var eratedService, $httpBackend, angularLoadMock;
 
     beforeEach(module('angular-erated'));
 
@@ -8,6 +8,17 @@ describe('Service', function() {
             .config(function(eratedServiceProvider) {
                 eratedServiceProvider.setApiKey('123');
             });
+    });
+
+    beforeEach(function() {
+        angularLoadMock = {};
+        angularLoadMock.loadScript = jasmine.createSpy();
+
+        module(function($provide) {
+            $provide.service('angularLoad', function() {
+                this.loadScript = angularLoadMock.loadScript;
+            });
+        });
     });
 
     beforeEach(inject(function(_eratedService_, _$httpBackend_) {
@@ -55,6 +66,12 @@ describe('Service', function() {
 
             expect(spy).toHaveBeenCalledWith(httpReturnData);
         });
+    });
+
+    it('loads Erated integration script', function() {
+        eratedService.loadSetupScript();
+
+        expect(angularLoadMock.loadScript).toHaveBeenCalledWith('//cdn.erated.co/iframe/erated_imp.js');
     });
 });
 
