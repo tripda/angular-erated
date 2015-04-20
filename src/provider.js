@@ -14,7 +14,6 @@ function eratedServiceProvider() {
             apiKey: apiKey,
             getApiKey: getApiKey,
             getUserProfile: getUserProfile,
-            isEmailRegistered: isEmailRegistered,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
@@ -34,20 +33,6 @@ function eratedServiceProvider() {
                 })
                 .error(function(data, status) {
                     deferred.reject(data); 
-                });
-
-            return deferred.promise;
-        }
-
-        function isEmailRegistered(emailHash) {
-            var deferred = $q.defer();
-
-            $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+apiKey+'&mode=marketplaces')
-                .success(function(data, status, headers, config) {
-                    deferred.resolve(true);
-                })
-                .error(function(data, status, headers, config) {
-                    deferred.resolve(false);
                 });
 
             return deferred.promise;

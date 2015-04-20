@@ -40,17 +40,15 @@ Now you can display it on your page by using a directive
 />
 ```
 
-###Find out whether an email has an Erated Account
+###Retrieving user data
 
-You might want to know if someone has signed up on Erated with a given email address, you can get this information by using this method:
+Although the directive provides you with the widget fully displayed by just passing an user's hashed email, you can still manually retrieve this information by calling a method that returns user information in JSON format. This method is also useful if you just need to know if a given email has signed up to Erated.
 
 ```javascript
-eratedService.isEmailRegistered('EMAIL-HASH')
-    .then(function(result) {
-        if (result) {
-            // There is an user with this email!
-        } else {
-            // There is no user with this email...
-        }
+eratedService.getUserProfile('EMAIL-HASH')
+    .then(function(userData) {
+        // User exists and its information is passed to this callback.
+    }, function() {
+        // Nobody has signed up to Erated with this email.
     });
 ```
