@@ -15,22 +15,27 @@ function eratedServiceProvider() {
     this.$get = ['$q', '$http', 'angularLoad', function($q, $http, angularLoad) {
         var service = {
             apiKey: apiKey,
-            isEmailRegistered: isEmailRegistered,
+            getApiKey: getApiKey,
+            getUserProfile: getUserProfile,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
 
         return service;
 
-        function isEmailRegistered(emailHash) {
+        function getApiKey() {
+            return apiKey;
+        }
+
+        function getUserProfile(emailHash) {
             var deferred = $q.defer();
 
-            $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+apiKey+'&mode=marketplaces')
-                .success(function(data, status, headers, config) {
-                    deferred.resolve(true);
+            $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+getApiKey())
+                .success(function(data) {
+                    deferred.resolve(data); 
                 })
-                .error(function(data, status, headers, config) {
-                    deferred.resolve(false);
+                .error(function(data, status) {
+                    deferred.reject(data); 
                 });
 
             return deferred.promise;
