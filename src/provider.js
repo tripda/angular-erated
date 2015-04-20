@@ -13,6 +13,7 @@ function eratedServiceProvider() {
         var service = {
             apiKey: apiKey,
             getApiKey: getApiKey,
+            getUserProfile: getUserProfile,
             isEmailRegistered: isEmailRegistered,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
@@ -22,6 +23,20 @@ function eratedServiceProvider() {
 
         function getApiKey() {
             return apiKey;
+        }
+
+        function getUserProfile(emailHash) {
+            var deferred = $q.defer();
+
+            $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+getApiKey())
+                .success(function(data) {
+                    deferred.resolve(data); 
+                })
+                .error(function(data, status) {
+                    deferred.reject(data); 
+                });
+
+            return deferred.promise;
         }
 
         function isEmailRegistered(emailHash) {

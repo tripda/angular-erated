@@ -19,5 +19,42 @@ describe('Service', function() {
         expect(eratedService.getApiKey()).toBe('123');
     });
 
+    describe('getUserProfile', function() {
+        it('calls external API and returns properly', function() {
+            var httpReturnData = {foo: 'bar'};
+
+            $httpBackend
+                .expectGET('//api.erated.co/v1/users/456?partner=' + eratedService.getApiKey())
+                .respond(200, httpReturnData);
+
+            var spy = jasmine.createSpy();
+
+            eratedService
+                .getUserProfile('456')
+                .then(spy);
+
+            $httpBackend.flush();
+
+            expect(spy).toHaveBeenCalledWith(httpReturnData);
+        });
+
+        it('calls external API and returns 404', function() {
+            var httpReturnData = {foo: 'bar'};
+
+            $httpBackend
+                .expectGET('//api.erated.co/v1/users/456?partner=' + eratedService.getApiKey())
+                .respond(404, httpReturnData);
+
+            var spy = jasmine.createSpy();
+
+            eratedService
+                .getUserProfile('456')
+                .then(null, spy);
+
+            $httpBackend.flush();
+
+            expect(spy).toHaveBeenCalledWith(httpReturnData);
+        });
+    });
 });
 
