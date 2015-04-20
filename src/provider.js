@@ -12,12 +12,17 @@ function eratedServiceProvider() {
     this.$get = ['$q', '$http', 'angularLoad', function($q, $http, angularLoad) {
         var service = {
             apiKey: apiKey,
+            getApiKey: getApiKey,
             isEmailRegistered: isEmailRegistered,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
 
         return service;
+
+        function getApiKey() {
+            return apiKey;
+        }
 
         function isEmailRegistered(emailHash) {
             var deferred = $q.defer();
