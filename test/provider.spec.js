@@ -4,26 +4,23 @@ describe('Service', function() {
     beforeEach(module('angular-erated'));
 
     beforeEach(function() {
-        angular.module('angular-erated')
+        angular
+            .module('angular-erated')
             .config(function(eratedServiceProvider) {
                 eratedServiceProvider.setApiKey('123');
             });
-    });
-
-    beforeEach(function() {
-        angularLoadMock = {};
-        angularLoadMock.loadScript = jasmine.createSpy();
 
         module(function($provide) {
             $provide.service('angularLoad', function() {
-                this.loadScript = angularLoadMock.loadScript;
+                this.loadScript = jasmine.createSpy();
             });
         });
     });
 
-    beforeEach(inject(function(_eratedService_, _$httpBackend_) {
+    beforeEach(inject(function(_eratedService_, _$httpBackend_, _angularLoad_) {
         eratedService = _eratedService_;
         $httpBackend = _$httpBackend_;
+        angularLoadMock = _angularLoad_;
     }));
 
     it('API key sets properly', function() {
