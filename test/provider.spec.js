@@ -73,5 +73,11 @@ describe('Service', function() {
 
         expect(angularLoadMock.loadScript).toHaveBeenCalledWith('//cdn.erated.co/iframe/erated_imp.js');
     });
+
+    it('setup configuration variables', function() {
+        eratedService.setupVars({});
+
+        expect(window.eRated).toBeDefined();
+    });
 });
 
