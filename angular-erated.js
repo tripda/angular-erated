@@ -46,26 +46,6 @@ function eratedServiceProvider() {
         }
 
         function setupVars(options) {
-            if (typeof options == "undefined") {
-                options = {};
-            }
-
-            if (!options.align) {
-                options.align = "horizontal";
-            }
-
-            if (!options.view) {
-                options.view = "buyer";
-            }
-
-            if (!options.emailhash) {
-                options.emailhash = "9999999";
-            }
-
-            if (!options.username) {
-                options.username = "username";
-            }
-
             reviews = [];
 
             window.eRated = {
