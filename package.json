@@ -4,7 +4,8 @@
   "description": "Integrate Erated with your AngularJS application.",
   "main": "test-main.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run"
+    "test": "./node_modules/karma/bin/karma start --single-run",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
