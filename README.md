@@ -1,5 +1,7 @@
 #angular-erated
 
+[![Build Status](https://api.travis-ci.org/TripdaApp/angular-erated.svg?branch=master)](http://travis-ci.org/TripdaApp/angular-erated)
+
 Display the [Erated](http://erated.co) plugin on your AngularJS application.
 
 ##Installing via bower
