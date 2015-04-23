@@ -7,9 +7,14 @@ angular
 
 function eratedServiceProvider() {
     var apiKey = "";
+    var defaultConfig = {};
 
     this.setApiKey = function(key) {
         apiKey = key;
+    }
+
+    this.setDefaultConfig = function(config) {
+        defaultConfig = config;
     }
 
     this.$get = ['$q', '$http', 'angularLoad', function($q, $http, angularLoad) {
@@ -17,6 +22,7 @@ function eratedServiceProvider() {
             apiKey: apiKey,
             getApiKey: getApiKey,
             getUserProfile: getUserProfile,
+            getDefaultConfig: getDefaultConfig,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
@@ -39,6 +45,10 @@ function eratedServiceProvider() {
                 });
 
             return deferred.promise;
+        }
+
+        function getDefaultConfig() {
+            return defaultConfig;
         }
 
         function loadSetupScript() {
@@ -73,6 +83,14 @@ function eratedServiceProvider() {
                     }
                 }
             }
+
+            var defaultConfig = service.getDefaultConfig();
+
+            for(var key in defaultConfig) {
+                window.eRated.config[key] = defaultConfig[key];
+            }
+
+            return window.eRated;
         }
     }];
 }

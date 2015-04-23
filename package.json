@@ -1,6 +1,6 @@
 {
   "name": "angular-erated",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Integrate Erated with your AngularJS application.",
   "main": "test-main.js",
   "scripts": {
