@@ -54,3 +54,22 @@ eratedService.getUserProfile('EMAIL-HASH')
         // Nobody has signed up to Erated with this email.
     });
 ```
+
+###Defining default options
+
+You might find yourself having to pass the same parameters over and over again for the directives when displaying the widget. You can avoid this by defining default options when configurating with the provider.
+
+```javascript
+angular
+    .module('myAngularApp', ['angular-erated'])
+    .config(function(eratedServiceProvider) {
+        var defaults = {
+            color: '#C24A17',
+            localizationFile: 'path-to-my-localization-file.json'
+        };
+
+        eratedServiceProvider.setDefaultConfig(defaults);
+    });
+```
+
+Now whenever you want to display the widget, you no longer have to pass the color and location file parameters anymore as they are set by default.
