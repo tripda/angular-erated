@@ -10,6 +10,11 @@ function eratedPlugin(eratedService) {
         link: function($scope, $element, attr) {
             var options = attr;
 
+            window.eRated = null;
+            window.erated = null;
+            window.eratedPlugin = null;
+            window.init_eRated = null;
+
             eratedService.loadSetupScript();
             eratedService.setupVars(options);
         },
