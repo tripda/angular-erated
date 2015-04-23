@@ -1,6 +1,8 @@
 describe('Service', function() {
     var eratedService, $httpBackend, angularLoadMock;
 
+    var defaultConfig = {foo: 'bar', hello: 'world'};
+
     beforeEach(module('angular-erated'));
 
     beforeEach(function() {
@@ -8,6 +10,7 @@ describe('Service', function() {
             .module('angular-erated')
             .config(function(eratedServiceProvider) {
                 eratedServiceProvider.setApiKey('123');
+                eratedServiceProvider.setDefaultConfig(defaultConfig);
             });
 
         module(function($provide) {
@@ -75,6 +78,24 @@ describe('Service', function() {
         eratedService.setupVars({});
 
         expect(window.eRated).toBeDefined();
+    });
+
+    describe('default config', function() {
+        it('getter should work', function() {
+            expect(eratedService.getDefaultConfig()).toBe(defaultConfig);
+        });
+
+        it('should be merged when setting up vars', function() {
+            var vars = eratedService.setupVars(defaultConfig);
+
+            expect(vars.config).toBeDefined();
+
+            expect(vars.config.foo).toBeDefined();
+            expect(vars.config.foo).toBe(defaultConfig.foo);
+
+            expect(vars.config.hello).toBeDefined();
+            expect(vars.config.hello).toBe(defaultConfig.hello);
+        });
     });
 });
 
