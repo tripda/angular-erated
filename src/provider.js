@@ -6,6 +6,8 @@ function eratedServiceProvider() {
     var apiKey = "";
     var defaultConfig = {};
 
+    var reviews = [];
+
     this.setApiKey = function(key) {
         apiKey = key;
     }
@@ -20,6 +22,8 @@ function eratedServiceProvider() {
             getApiKey: getApiKey,
             getUserProfile: getUserProfile,
             getDefaultConfig: getDefaultConfig,
+            addReview: addReview,
+            getReviews: getReviews,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
@@ -48,12 +52,24 @@ function eratedServiceProvider() {
             return defaultConfig;
         }
 
+        function addReview(content, asSeller, type) {
+            reviews.push({
+                review_content: content,
+                reviewed_as_seller: asSeller,
+                review_type: type,
+            });
+        }
+
+        function getReviews() {
+            return reviews;
+        }
+
         function loadSetupScript() {
             angularLoad.loadScript('//cdn.erated.co/iframe/erated_imp.js');
         }
 
         function setupVars(options) {
-            reviews = [];
+            var reviews = service.getReviews();
 
             window.eRated = {
                 config: {

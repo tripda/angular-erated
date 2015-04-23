@@ -97,5 +97,47 @@ describe('Service', function() {
             expect(vars.config.hello).toBe(defaultConfig.hello);
         });
     });
+
+    describe('reviews', function() {
+        it('should get 0 reviews because none has been added', function() {
+            expect(eratedService.getReviews().length).toBe(0);
+        });
+
+        it('should get review after adding it', function() {
+            var review = {
+                review_content: "My review",
+                reviewed_as_seller: true,
+                review_type: true
+            };
+
+            eratedService.addReview(
+                review.review_content,
+                review.reviewed_as_seller,
+                review.review_type);
+
+            expect(eratedService.getReviews().length).toBe(1);
+
+            expect(eratedService.getReviews()[0]).toEqual(review);
+        });
+
+        it('should be added to global variable when calling setupVars', function() {
+            var review = {
+                review_content: "My review",
+                reviewed_as_seller: true,
+                review_type: true
+            };
+
+            eratedService.addReview(
+                review.review_content,
+                review.reviewed_as_seller,
+                review.review_type);
+
+            eratedService.setupVars({});
+
+            expect(window.eRated.userData.reputationData).toBeDefined();
+            expect(window.eRated.userData.reputationData.reviews.length).toBe(1);
+            expect(window.eRated.userData.reputationData.reviews[0]).toEqual(review);
+        });
+    });
 });
 
