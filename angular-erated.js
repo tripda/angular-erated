@@ -27,6 +27,7 @@ function eratedServiceProvider() {
             getDefaultConfig: getDefaultConfig,
             addReview: addReview,
             getReviews: getReviews,
+            removeAllReviews: removeAllReviews,
             loadSetupScript: loadSetupScript,
             setupVars: setupVars
         };
@@ -67,6 +68,10 @@ function eratedServiceProvider() {
             return reviews;
         }
 
+        function removeAllReviews() {
+            reviews = [];
+        }
+
         function loadSetupScript() {
             angularLoad.loadScript('//cdn.erated.co/iframe/erated_imp.js');
         }
@@ -105,6 +110,8 @@ function eratedServiceProvider() {
             for(var key in defaultConfig) {
                 window.eRated.config[key] = defaultConfig[key];
             }
+
+            service.removeAllReviews();
 
             return window.eRated;
         }
