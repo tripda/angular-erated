@@ -138,6 +138,22 @@ describe('Service', function() {
             expect(window.eRated.userData.reputationData.reviews.length).toBe(1);
             expect(window.eRated.userData.reputationData.reviews[0]).toEqual(review);
         });
+
+        it('should be able to be removed fully', function() {
+            eratedService.addReview("foobar", true, true);
+
+            eratedService.removeAllReviews();
+
+            expect(eratedService.getReviews().length).toBe(0);
+        });
+
+        it('should all be removed after global vars have been set', function () {
+            eratedService.addReview("foobar", true, true);
+
+            eratedService.setupVars({});
+
+            expect(eratedService.getReviews().length).toBe(0);
+        });
     });
 });
 
