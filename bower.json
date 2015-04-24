@@ -1,7 +1,7 @@
 {
   "name": "angular-erated",
   "description": "Integrate Erated with your AngularJS application.",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "homepage": "https://github.com/TripdaApp/angular-erated",
   "keywords": [
     "angular",
