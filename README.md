@@ -73,3 +73,16 @@ angular
 ```
 
 Now whenever you want to display the widget, you no longer have to pass the color and location file parameters anymore as they are set by default.
+
+###Displaying Reviews
+
+Reviews can be displayed by calling a method:
+
+```javascript
+.module('myAngularApp')
+    .controller('sampleCtrl', function(eratedService) {
+        eratedService.addReview("Very good!", true, true);
+        eratedService.addReview("I'll definitely buy from this seller again, I'm completely satisfied.", true, true);
+    });
+```
+
