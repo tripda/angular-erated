@@ -85,4 +85,19 @@ Reviews can be displayed by calling a method:
         eratedService.addReview("I'll definitely buy from this seller again, I'm completely satisfied.", true, true);
     });
 ```
+##Hiding Connections
 
+You might not want to display all available connections and hide a few, you can achieve this when configuring with the provider:
+
+```javascript
+angular
+    .module('myAngularApp', ['angular-erated'])
+    .config(function(eratedServiceProvider) {
+        var defaults = {
+            exclude: ['ebay', 'facebook']
+        };
+
+        eratedServiceProvider.setDefaultConfig(defaults);
+    });
+```
+By doing this, the user will not see Ebay and Facebook as connectable services.
