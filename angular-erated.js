@@ -43,10 +43,12 @@ function eratedServiceProvider() {
 
             $http.get('//api.erated.co/v1/users/'+emailHash+'?partner='+getApiKey())
                 .success(function(data) {
+                    if (data.hasOwnProperty('error')) {
+                        deferred.reject(data);
+                        return;
+                    }
+
                     deferred.resolve(data); 
-                })
-                .error(function(data, status) {
-                    deferred.reject(data); 
                 });
 
             return deferred.promise;
