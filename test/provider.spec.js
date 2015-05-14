@@ -49,12 +49,12 @@ describe('Service', function() {
             expect(spy).toHaveBeenCalledWith(httpReturnData);
         });
 
-        it('calls external API and returns 404', function() {
-            var httpReturnData = {foo: 'bar'};
+        it('calls external API and rejects when user does not exist', function() {
+            var httpReturnData = {error: 'Not found'};
 
             $httpBackend
                 .expectGET('//api.erated.co/v1/users/456?partner=' + eratedService.getApiKey())
-                .respond(404, httpReturnData);
+                .respond(200, httpReturnData);
 
             var spy = jasmine.createSpy();
 
